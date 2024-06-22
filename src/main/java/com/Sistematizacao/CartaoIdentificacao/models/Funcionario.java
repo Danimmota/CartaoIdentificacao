@@ -10,7 +10,7 @@ public class Funcionario {
 
     //colunas da tabela de funcionarios
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_matricula")
     private Integer idMatricula;
 

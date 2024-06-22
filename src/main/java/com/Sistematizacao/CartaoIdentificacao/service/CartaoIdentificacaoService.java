@@ -23,7 +23,7 @@ import java.util.List;
 @Service
 public class CartaoIdentificacaoService {
 
-   //injeção de dependencia
+   //Injeção de dependencia
     @Autowired
     private FuncionarioRepository funcionarioRepository;
     @Autowired
@@ -32,13 +32,7 @@ public class CartaoIdentificacaoService {
     private AlergiaRepository alergiaRepository;
 
 
-    //responsáveis pelas regras de negócio
-
-    //Método para buscar 01 cartao existente no banco de dados
-    public CartaoDTO getCartao(Integer matricula) {
-        Funcionario funcionario = funcionarioRepository.findById(matricula).orElseThrow();
-        return parseCartao(funcionario);
-    }
+    //Responsáveis pelas regras de negócio
 
     //Método para converter o objeto model em objeto DTO
     public CartaoDTO parseCartao(Funcionario funcionario) {
@@ -60,6 +54,13 @@ public class CartaoIdentificacaoService {
 
         return cartaoDTO;
     }
+
+    //Método para buscar 01 cartao existente no banco de dados
+    public CartaoDTO getCartao(Integer matricula) {
+        Funcionario funcionario = funcionarioRepository.findById(matricula).orElseThrow();
+        return parseCartao(funcionario);
+    }
+
     //Método para listar todos os cartões
     public List<CartaoDTO> listarCartoes() {
         List<Funcionario> funcionarioList = funcionarioRepository.findAll();
@@ -99,11 +100,68 @@ public class CartaoIdentificacaoService {
             //
             Saude saude = problemaMedico.get(i);
             SaudeDTO dto = new SaudeDTO();
-            dto.setProblemaMedico(saude.getProblemaMedico());
+            dto.setProblemaMedico(saude.getProblema_medico());
             //
             saudeDTO.add(dto);
         }
         return saudeDTO;
+    }
+    //Método para adicionar um novo cartão de identificação ou editar um cartão
+    public CartaoDTO saveCartao(CartaoDTO cartaoDTO) {
+        Funcionario funcionario = new Funcionario();
+        funcionario.setIdMatricula(cartaoDTO.getIdMatricula());
+        funcionario.setNome(cartaoDTO.getNome());
+        funcionario.setCpf(cartaoDTO.getCpf());
+        funcionario.setEmail(cartaoDTO.getEmail());
+        funcionario.setTelefone(cartaoDTO.getTelefone());
+        funcionario.setTipoSanguineo(cartaoDTO.getTipoSanguineo());
+
+        boolean idMatricula = (true);
+        Integer matricula = funcionario.getIdMatricula();
+        if (matricula.equals(idMatricula)) {
+            deleteCartao(funcionario.getIdMatricula());
+            saveCartao(cartaoDTO);
+        }
+
+        funcionario = funcionarioRepository.save(funcionario);
+
+        //Criação da lista de alergias do novo cartão de identificação
+        List<Alergia> alergias = new ArrayList<>();
+        for (int i=0; i< cartaoDTO.getAlergias().size(); i++){
+            String nomeAlergia = cartaoDTO.getAlergias().get(i).getNome();
+
+            Alergia alergia = new Alergia();
+            alergia.setNomeAlergia(nomeAlergia);
+            alergia.setIdMatricula(funcionario.getIdMatricula());
+
+            alergias.add(alergia);
+        }
+
+        alergiaRepository.saveAll(alergias);
+
+        //Criação da lista de saúde/problemasmedicos do novo cartão de identificação
+        List<Saude> saudeList = new ArrayList<>();
+        for (int i=0; i< cartaoDTO.getSaude().size(); i++) {
+            String problema_medico = cartaoDTO.getSaude().get(i).getProblemaMedico();
+
+            Saude saude = new Saude();
+            saude.setProblema_medico(problema_medico);
+            saude.setIdMatricula(funcionario.getIdMatricula());
+
+            saudeList.add(saude);
+
+        }
+
+        saudeRepository.saveAll(saudeList);
+
+        return parseCartao(funcionario);
+    }
+
+    //Método para deletar um cartão
+    public void deleteCartao (Integer idMatricula) {
+        funcionarioRepository.deleteById(idMatricula);
+        saudeRepository.deleteByIdMatricula(idMatricula);
+        alergiaRepository.deleteByIdMatricula(idMatricula);
     }
 
 
