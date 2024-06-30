@@ -1,4 +1,4 @@
-## Sistema Cartao Identificacao
+## Sistema Cartão de Identificação
 
 Objetivo:
 
@@ -29,7 +29,7 @@ Esta aplicação foi desenvolvida com a **finalidade de ser uma API REST** respo
         { "problemaMedico": "Hipertensão" }
     ]
 }
-````
+```
 2. Exemplo de requisição para atualização de cartão (o campo id_matricula deve vir preenchido):
 ```json
 {
@@ -47,8 +47,10 @@ Esta aplicação foi desenvolvida com a **finalidade de ser uma API REST** respo
     ]
 }
 ```
+
 **Response:**:
 1. Ao ser invocada esta requisição retorna o cartão de identificação do funcionario com o campo id_matricula:
+
 ```json
 {
     "nome": "Jose Afonso Silva",
@@ -87,6 +89,7 @@ Esta aplicação foi desenvolvida com a **finalidade de ser uma API REST** respo
     ]
 }
 ```
+
 **Método**: GET - **Endpoint:** http://localhost:8080/cartaoidentificacao/listartodos
 **Descrição**: Endpoint utilizado para buscar todos os cartões de identificação disponiveis na base dados.
 **Response:**:
@@ -121,7 +124,7 @@ Ao ser invocada esta requisição retorna uma lista de cartões:
     }
     {
         "id_matricula": "3", 
-        "nome": "Maria Antonio Gonçalves",
+        "nome": "Maria Antonia Gonçalves",
         "cpf": "111.222.333-99",
         "email": "email@email.com",
         "telefone": "(61)9.9999-9999",
@@ -132,11 +135,13 @@ Ao ser invocada esta requisição retorna uma lista de cartões:
 
 ]
 ```
+
 **Método**: DELETE - **Endpoint:** http://localhost:8080/cartaoidentificacao?id=id_matricula
 **Descrição**: Endpoint utilizado para excluir um determinado cartão de identificação baseado no id_matricula informado.
 **Request:**:
     http://localhost:8080/cartaoidentificacao?id=1
+
 **Response:**
-```
+```json
 Cartão excluído com sucesso
 ```
