@@ -11,14 +11,10 @@ import com.Sistematizacao.CartaoIdentificacao.repositories.FuncionarioRepository
 import com.Sistematizacao.CartaoIdentificacao.repositories.SaudeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-
-//editar cartao > put
-//add cartao > post
-//deletar cartao > delete
-//buscar cartao > get > ok
 
 @Service
 public class CartaoIdentificacaoService {
@@ -106,7 +102,9 @@ public class CartaoIdentificacaoService {
         }
         return saudeDTO;
     }
+
     //Método para adicionar um novo cartão de identificação ou editar um cartão
+    @Transactional
     public CartaoDTO saveCartao(CartaoDTO cartaoDTO) {
         Funcionario funcionario = new Funcionario();
         funcionario.setIdMatricula(cartaoDTO.getIdMatricula());
@@ -116,11 +114,15 @@ public class CartaoIdentificacaoService {
         funcionario.setTelefone(cartaoDTO.getTelefone());
         funcionario.setTipoSanguineo(cartaoDTO.getTipoSanguineo());
 
-        boolean idMatricula = (true);
-        Integer matricula = funcionario.getIdMatricula();
-        if (matricula.equals(idMatricula)) {
-            deleteCartao(funcionario.getIdMatricula());
-            saveCartao(cartaoDTO);
+        /*
+        O ID Matricula será null caso seja a criação de uma novo cartão
+        se for edição, a matricula sepassada como parametro e será realizado uma operação de
+        limpeza do historico de alergias e saude
+        */
+        Integer idMatricula = funcionario.getIdMatricula();
+        if (idMatricula != null) {
+            alergiaRepository.deleteByIdMatricula(idMatricula);
+            saudeRepository.deleteByIdMatricula(idMatricula);
         }
 
         funcionario = funcionarioRepository.save(funcionario);
@@ -158,10 +160,16 @@ public class CartaoIdentificacaoService {
     }
 
     //Método para deletar um cartão
+    @Transactional
     public void deleteCartao (Integer idMatricula) {
-        funcionarioRepository.deleteById(idMatricula);
+        /*
+        Os registros de Saude e Alergia precisão ser excluidos antes do funcionario porque estas duas tabelas
+        possui relacionamento com funcionario
+        */
         saudeRepository.deleteByIdMatricula(idMatricula);
         alergiaRepository.deleteByIdMatricula(idMatricula);
+
+        funcionarioRepository.deleteById(idMatricula);
     }
 
 
