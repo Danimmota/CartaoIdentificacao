@@ -2,12 +2,13 @@
 
 Objetivo:
 
-Esta aplicação foi desenvolvida com a **finalidade de ser uma API REST** responsável por gerenciar as informações dos empregados através de cartões de identificação, por meio de requisições HTTP, tornado possível inserir novos cartões no sistema, obter apenas um cartão ou a lista de todos os cartões, alterar um cartão ou deletar um cartão.
+Esta aplicação tem como objetivo ser uma **API REST** capaz de forcecer endpoints para o gerenciamento de informações dos empregados através de cartões de identificação, por meio de requisições HTTP, tornado possível: inserir, alterar, listar e deletar cartões de identificação.
 
 ### Das tecnologias utilizadas no desenvolvimento:
-1. Foi utilizado a **linguagem de programação Java**, dado seu paradigma orientado a objetos, que nos possibilita uma melhor modelagem dos requisitos de negócio.
+1. Foi utilizado a **linguagem de programação Java**, dado seu paradigma orientado a objetos, que nos possibilita uma melhor modelagem dos requisitos de negócio e organização do código.
 2. Além da linguagem Java foi utilizado o **framework Spring Boot** sendo ele uma das mais importantes bibliotecas para desenvolvimento de aplicações seguras, resilientes e escaláveis do mercado.
-3. Para armazenar as informações dos funcionários foi utilizado o **SGBD MySQL**, sendo ele um banco de dados relacional, e um dos mais utilizados mundialmente.
+3. Como arquitetura de organização de projeto foi escolhido o padrão MVC 
+4. Para armazenar as informações dos funcionários foi utilizado o **SGBD MySQL**, sendo ele um banco de dados relacional, e um dos mais utilizados mundialmente.
 
 #### Modo de uso:
 **Método**: POST - **Endpoint:** http://localhost:8080/cartaoidentificacao/save
