@@ -142,6 +142,6 @@ Ao ser invocada esta requisição retorna uma lista de cartões:
     http://localhost:8080/cartaoidentificacao?id=1
 
 **Response:**
-```json
+```text
 Cartão excluído com sucesso
 ```
