@@ -48,8 +48,8 @@ Body: {
 
 ```
 **Response:**:
-```json
 1. Ao ser invocada esta requisição retorna o cartão de identificação do funcionario com o campo id_matricula:
+```json
 Body: {
     "nome": "Jose Afonso Silva",
     "cpf": "111.222.333-99",
@@ -67,15 +67,9 @@ Body: {
 ```
 **Método**: GET - **Endpoint:** http://localhost:8080/cartaoidentificacao?id=id_matricula
 **Descrição**: Endpoint utilizado para buscar informações de um cartão de identificação existente.
-
-http://localhost:8080/cartaoidentificacao?id=5
 **Request:**: 
-```json
 1. Exemplo de requisição para buscar o cartão de identificação de um funcionario com a matricula 5:
-
-http://localhost:8080/cartaoidentificacao?id=5
-
-```
+   http://localhost:8080/cartaoidentificacao?id=5
 **Response:**:
 ```json
 1. Ao ser invocada esta requisição retorna o cartão de identificação do funcionario:
@@ -97,7 +91,6 @@ http://localhost:8080/cartaoidentificacao?id=5
 ```
 **Método**: GET - **Endpoint:** http://localhost:8080/cartaoidentificacao/listartodos
 **Descrição**: Endpoint utilizado para buscar todos os cartões de identificação disponiveis na base dados.
-
 **Response:**:
 Ao ser invocada esta requisição retorna uma lista de cartões:
 ```json
@@ -143,12 +136,9 @@ Ao ser invocada esta requisição retorna uma lista de cartões:
 
 ```
 **Método**: DELETE - **Endpoint:** http://localhost:8080/cartaoidentificacao?id=id_matricula
-
 **Descrição**: Endpoint utilizado para excluir um determinado cartão de identificação baseado no id_matricula informado.
-
 **Request:**:
     http://localhost:8080/cartaoidentificacao?id=1
-
 **Response:**
 ```
 Cartão excluído com sucesso
