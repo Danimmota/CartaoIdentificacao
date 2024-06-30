@@ -10,12 +10,13 @@ public class Alergia {
 
     //colunas da tabela de alergias
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_alergia")
     private Integer idAlergia;
 
     @Column(name="nome")
     private String nomeAlergia;
+
     @Column(name="id_matricula")
     private Integer idMatricula;
 

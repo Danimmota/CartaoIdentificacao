@@ -10,4 +10,6 @@ import java.util.List;
 public interface SaudeRepository extends JpaRepository<Saude, Integer> {
 
     List<Saude> findByIdMatricula(Integer idMatricula);
+
+    void deleteByIdMatricula(Integer idMatricula);
 }

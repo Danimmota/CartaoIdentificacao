@@ -10,4 +10,6 @@ import java.util.List;
 public interface AlergiaRepository extends JpaRepository<Alergia, Integer> {
 
     List<Alergia> findByIdMatricula(Integer idMatricula);
+
+    void deleteByIdMatricula(Integer idMatricula);
 }
