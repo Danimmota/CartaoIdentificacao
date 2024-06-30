@@ -70,8 +70,8 @@ Esta aplicação foi desenvolvida com a **finalidade de ser uma API REST** respo
 1. Exemplo de requisição para buscar o cartão de identificação de um funcionario com a matricula 5:
    http://localhost:8080/cartaoidentificacao?id=5
 **Response:**:
-```json
 1. Ao ser invocada esta requisição retorna o cartão de identificação do funcionario:
+```json
 {
     "id_matricula": "5", 
     "nome": "Jose Afonso Silva",
