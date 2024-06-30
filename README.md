@@ -14,9 +14,9 @@ Esta aplicação foi desenvolvida com a **finalidade de ser uma API REST** respo
 **Descrição**: Endpoint utilizado para cadastrar um novo cartão de identificação ou atualizar um cartão de identificação já existente.
 
 **Request:**: 
-```json
 1. Exemplo de requisição para inserção de novo cartão:
-Body: {
+```json
+{
     "nome": "Jose Afonso Silva",
     "cpf": "111.222.333-99",
     "email": "email@email.com",
@@ -29,9 +29,10 @@ Body: {
         { "problemaMedico": "Hipertensão" }
     ]
 }
-
-1. Exemplo de requisição para atualização de cartão (o campo id_matricula deve vir preenchido):
-Body: {
+````
+2. Exemplo de requisição para atualização de cartão (o campo id_matricula deve vir preenchido):
+```json
+{
     "id_matricula": "1", 
     "nome": "Jose Afonso Silva",
     "cpf": "111.222.333-99",
